@@ -10,6 +10,7 @@ void main() {
             1 - Cadastrar Veículo
             2 - Listar Veículos
             3 - Remover Veículos
+            4 - Buscar Veículo
             0 - Sair
             """;
     
@@ -32,6 +33,10 @@ void main() {
                 excluir();
                 IO.readln("Pressione ENTER para continuar");
             }
+            case 4 -> {
+                buscarPorNome();
+                IO.readln("Pressione ENTER para continuar")
+            }
             case 0 -> {
                 // TO DO Sair
                 IO.println("Volte sempre!!!");
@@ -49,9 +54,17 @@ void cadastrar() {
     veiculo = veiculo.trim();
     if (veiculo.isEmpty()) {
         IO.println("Nome do veículo inválido.");
-    } else {
-        veiculos.add(veiculo);
+    } 
+    
+    for (String v : veiculos) {
+        if (v.equalsIgnoreCase(veiculo)) {
+            IO.println("Este veículo já está cadastrado");
+            return;
+        }
     }
+    
+    veiculos.add(veiculo);
+    
 }
 
 void listar() {
@@ -60,14 +73,23 @@ void listar() {
     }
 }
 
-void excluir () {
+void excluir() {
     listar();
-    int indice = input.scanInt("Digite o índice do veículo");
+    int indice = input.scanInt("Digite o índice do veículo: ");
     if (indice > veiculos.size() || indice <= 0)
         IO.println("Veículo não encontrado");
     else {
         veiculos.remove(indice - 1);
         IO.println("Veículo removido com sucesso");
     }
-
 }
+
+void buscarPorNome() {
+    String nome_busca = IO.readln("Digite o nome do carro que deseja buscar: ");
+    if (nome_busca.isEmpty()) {
+        IO.println("Nome do veículo inválido.");
+    } else {
+        List<String> Temp = new ArrayList<>();
+    }
+}
+
