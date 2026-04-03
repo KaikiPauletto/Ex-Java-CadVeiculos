@@ -11,6 +11,7 @@ void main() {
             2 - Listar Veículos
             3 - Remover Veículos
             4 - Buscar Veículo
+            5 - Editar veículo
             0 - Sair
             """;
     
@@ -35,6 +36,10 @@ void main() {
             }
             case 4 -> {
                 buscarPorNome();
+                IO.readln("Pressione ENTER para continuar");
+            }
+            case 5 -> {
+                editar();
                 IO.readln("Pressione ENTER para continuar");
             }
             case 0 -> {
@@ -115,5 +120,25 @@ void buscarPorNome() {
         }
         IO.println("Número de veículos encontrados: " + temp.size());
     }
+}
+
+void editar() {
+    int opcao_editar;
+    listar();
+    opcao_editar = input.scanInt("Digite o ID do veículo que deseja editar: ");
+    int indice = opcao_editar - 1;
+
+    IO.println("Veículo atual: " + veiculos.get(indice));
+
+    String novo_nome = IO.readln("Digite o novo nome do veículo: ");
+
+    if (novo_nome.isEmpty()) {
+        IO.println("Nome inválido");
+        return;
+    }
+
+    veiculos.set(indice, novo_nome);
+
+    IO.println("Veículo atualizado com sucesso!");
 }
 
