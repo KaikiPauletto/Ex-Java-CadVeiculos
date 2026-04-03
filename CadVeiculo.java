@@ -35,7 +35,7 @@ void main() {
             }
             case 4 -> {
                 buscarPorNome();
-                IO.readln("Pressione ENTER para continuar")
+                IO.readln("Pressione ENTER para continuar");
             }
             case 0 -> {
                 // TO DO Sair
@@ -86,10 +86,29 @@ void excluir() {
 
 void buscarPorNome() {
     String nome_busca = IO.readln("Digite o nome do carro que deseja buscar: ");
+
     if (nome_busca.isEmpty()) {
         IO.println("Nome do veículo inválido.");
+        return;
+    }
+
+    List<String> temp = new ArrayList<>();
+    String buscaLower = nome_busca.toLowerCase();
+
+    for (String v : veiculos) {
+        if (v.toLowerCase().contains(buscaLower)) {
+            temp.add(v);
+        }
+    }
+
+    if (temp.isEmpty()) {
+        IO.println("Nenhum veículo encontrado.");
     } else {
-        List<String> Temp = new ArrayList<>();
+        IO.println("Veículos encontrados:");
+        for (String nome : temp) {
+            IO.println(nome);
+        }
+        IO.println("Número de veículos encontrados: " + temp.size());
     }
 }
 
