@@ -64,6 +64,7 @@ void cadastrar() {
     veiculo = veiculo.trim();
     if (veiculo.isEmpty()) {
         IO.println("Nome do veículo inválido.");
+        return;
     } 
     
     for (String v : veiculos) {
@@ -158,6 +159,11 @@ void editar() {
     listar();
     opcao_editar = input.scanInt("Digite o ID do veículo que deseja editar: ");
     int indice = opcao_editar - 1;
+
+    if (indice < 0 || indice >= veiculos.size()) {
+        IO.println("ID inválido.");
+        return;
+    }
 
     IO.println("Veículo atual: " + veiculos.get(indice));
 
