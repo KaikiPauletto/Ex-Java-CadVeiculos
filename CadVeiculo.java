@@ -78,6 +78,8 @@ void listar() {
         return;
     }
     
+    ordenarVeiculos();
+
     for (int i = 1; i <= veiculos.size(); i++) {
         IO.println(i + " - " + veiculos.get(i - 1));
     }
@@ -95,6 +97,7 @@ void excluir() {
 }
 
 void buscarPorNome() {
+    ordenarVeiculos();
     String nome_busca = IO.readln("Digite o nome do carro que deseja buscar: ");
 
     if (nome_busca.isEmpty()) {
@@ -142,3 +145,17 @@ void editar() {
     IO.println("Veículo atualizado com sucesso!");
 }
 
+void ordenarVeiculos() {
+    for (int i = 0; i < veiculos.size() - 1; i++) {
+        for (int j = 0; j < veiculos.size() - 1 - i; j++) {
+            String atual = veiculos.get(j);
+            String proximo = veiculos.get(j + 1);
+
+            if (atual.compareToIgnoreCase(proximo) > 0) {
+                veiculos.set(j, proximo);
+                veiculos.set(j + 1, atual);
+            }
+        }
+    }
+    IO.println("Veículos ordenados com sucesso! Volte ao menu e liste os veículos para verificar.");
+}
