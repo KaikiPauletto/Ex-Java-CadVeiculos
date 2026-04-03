@@ -68,6 +68,11 @@ void cadastrar() {
 }
 
 void listar() {
+    if (veiculos.isEmpty()) {
+        IO.println("Lista vazia, não há veículos cadastrados.");
+        return;
+    }
+    
     for (int i = 1; i <= veiculos.size(); i++) {
         IO.println(i + " - " + veiculos.get(i - 1));
     }
