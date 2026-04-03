@@ -107,6 +107,7 @@ void excluirPorNome() {
     String nome_a_excluir = IO.readln("Digite o nome do veículo que você deseja remover: ").trim();
     if (nome_a_excluir.isEmpty()) {
         IO.println("Nome inválido");
+        return;
     }
 
     int removidos = 0;
