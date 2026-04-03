@@ -9,9 +9,10 @@ void main() {
             MENU DE OPÇÕES
             1 - Cadastrar Veículo
             2 - Listar Veículos
-            3 - Remover Veículos
+            3 - Remover Veículos por ID
             4 - Buscar Veículo
-            5 - Editar veículo
+            5 - Editar Veículo
+            6 - Remover Veículo por Nome
             0 - Sair
             """;
     
@@ -24,7 +25,7 @@ void main() {
         switch (opcao) {
             case 1 -> {
                 cadastrar();
-                IO.readln("Pressione ENTER para continuar.");
+                IO.readln("Pressione ENTER para continuar");
             }
             case 2 -> {
                 listar();
@@ -40,6 +41,10 @@ void main() {
             }
             case 5 -> {
                 editar();
+                IO.readln("Pressione ENTER para continuar");
+            }
+            case 6 -> {
+                excluirPorNome();
                 IO.readln("Pressione ENTER para continuar");
             }
             case 0 -> {
@@ -93,6 +98,29 @@ void excluir() {
     else {
         veiculos.remove(indice - 1);
         IO.println("Veículo removido com sucesso");
+    }
+}
+
+void excluirPorNome() {
+    listar();
+    String nome_a_excluir = IO.readln("Digite o nome do veículo que você deseja remover: ").trim();
+    if (nome_a_excluir.isEmpty()) {
+        IO.println("Nome inválido");
+    }
+
+    int removidos = 0;
+
+    for (int i = veiculos.size() - 1; i >= 0; i--) {
+        if (veiculos.get(i).equalsIgnoreCase(nome_a_excluir)) {
+            veiculos.remove(i);
+            removidos++;
+        }
+    }
+
+    if (removidos == 0) {
+        IO.println("Nenhum veículo encontrado com esse nome.");
+    } else {
+        IO.println("O veículo " + nome_a_excluir + " foi removido.");
     }
 }
 
